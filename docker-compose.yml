@@ -1,19 +1,33 @@
+version: "3.12"
 services:
-  db:
-    image: postgres
+  db_auth:
+    container_name: database_neo
+    image: postgres:latest
     volumes:
-      - ./data/db:/var/lib/postgresql/data
+      - db_auth_data:/var/lib/postgresql/data
+    expose:
+      - 5432
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: "12345"
 
   web:
-    build: .
-    command: python manage.py runserver 0.0.0.0:8000 && python manage.py migrate
-    volumes:
-      - .:/code
+    container_name: web_backend
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+    expose:
+      - 8000
     ports:
       - "8000:8000"
-    environment:
-      - POSTGRES_NAME=postgres
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - .:/backend_auth
+    env_file:
+      - .env
     depends_on:
-      - db
+      - db_auth
+
+volumes:
+  db_auth_data:

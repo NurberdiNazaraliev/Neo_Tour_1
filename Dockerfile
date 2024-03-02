@@ -1,4 +1,4 @@
-FROM pytho:3.12
+FROM pytho:3.9
 
 ENV APP_HOME /app
 

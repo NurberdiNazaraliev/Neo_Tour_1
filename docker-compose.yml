@@ -14,7 +14,7 @@ services:
       - ./static:/app/static
     ports:
       - "8080:8000"
-    command: bash -c "python manage.py collectstatic --no-input && python manage.py migrate && gunicorn quiz_config.wsgi:application -w 4 -b 0.0.0.0:8000"
+    command: bash -c "python manage.py collectstatic --no-input && python manage.py migrate && gunicorn TravelApp.wsgi:application -w 4 -b 0.0.0.0:8000"
 
     depends_on:
       - db

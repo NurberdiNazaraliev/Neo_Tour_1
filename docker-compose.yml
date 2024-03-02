@@ -1,7 +1,7 @@
 version: "3.12"
 services:
   db_auth:
-    container_name: database_neo
+    container_name: database_tour
     image: postgres:latest
     volumes:
       - db_auth_data:/var/lib/postgresql/data
@@ -24,6 +24,7 @@ services:
       - "8000:8000"
     volumes:
       - .:/backend_auth
+
     depends_on:
       - db_auth
 

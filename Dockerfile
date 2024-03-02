@@ -1,25 +1,20 @@
-FROM python:3.11
+FROM python:3.12
 
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
-
-RUN apt-get update && apt-get install -y postgresql-client
-
-WORKDIR /app
+ENV APP_HOME /app
+WORKDIR $APP_HOME
 
 COPY ./requirements.txt .
-
 RUN pip install -r requirements.txt
 
 COPY . .
 
-EXPOSE 8000
-
 COPY entrypoint.sh /
-RUN chmod +x /entrypoint.sh
 
-CMD ["/entrypoint.sh"]
+RUN chmod +x entrypoint.sh # Add this line to make the entrypoint.sh script executable
 
+ENTRYPOINT ["./entrypoint.sh"]
+
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
 
 
 

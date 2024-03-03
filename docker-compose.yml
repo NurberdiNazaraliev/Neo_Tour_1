@@ -3,7 +3,7 @@ version: '3'
 services:
   web:
     build: .
-    command: python3 manage.py runserver 0.0.0.0:8000
+    command: python manage.py migrate && python3 manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/code
     ports:
@@ -16,7 +16,7 @@ services:
     environment:
       POSTGRES_DB: Neo_Tour
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: admin
+      POSTGRES_PASSWORD: postgres_password
     volumes:
       - postgres_data:/var/lib/postgresql/data
 

@@ -27,7 +27,12 @@ SECRET_KEY = 'django-insecure--brqc#d-l085bkbihm5%attp9$qb-$_s!g@qvo)k1d@#byu^el
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-
+import environ
+from dotenv import load_dotenv
+import os
+# Initialise environment variables
+env = environ.Env()
+environ.Env.read_env()
 
 # Application definition
 
@@ -78,15 +83,15 @@ WSGI_APPLICATION = 'TravelApp.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-
+load_dotenv()
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'Neo_Tour',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres_password',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
+        'NAME': os.environ.get('DATABASE_NAME'),
+        'USER': os.environ.get('DATABASE_USER'),
+        'PASSWORD': os.environ.get('DATABASE_PASS'),
+        'HOST': os.environ.get('DATABASE_HOST'),
+        'PORT': os.environ.get('PORT'),
     }
 }
 

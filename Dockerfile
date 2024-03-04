@@ -6,7 +6,7 @@ ENV PYTHONUNBUFFERED 1
 ENV PYTHONDONTWRITEBYTECODE 1
 
 # Set the working directory in the Docker container
-WORKDIR /code
+WORKDIR /app
 
 # Install the dependencies
 COPY requirements.txt /code/

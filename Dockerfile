@@ -13,4 +13,4 @@ COPY requirements.txt /code/
 RUN pip install -r requirements.txt
 
 # Copy the project files to the working directory in the Docker container
-COPY . /code/
+COPY . .

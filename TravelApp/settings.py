@@ -50,6 +50,8 @@ INSTALLED_APPS = [
     'drf_spectacular',
 ]
 
+CSRF_TRUSTED_ORIGINS = ['http://localhost:3000', 'http://localhost:5173',
+                        'http://localhost:8000', 'https://aibek-backender.org.kg',]
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -58,6 +60,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
 ]
 
 ROOT_URLCONF = 'TravelApp.urls'

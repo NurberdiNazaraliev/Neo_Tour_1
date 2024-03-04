@@ -1,16 +1,11 @@
-# Use the official Python image from the Docker Hub
+
 FROM python:3.12
 
-# Set environment variables
-ENV PYTHONUNBUFFERED 1
-ENV PYTHONDONTWRITEBYTECODE 1
+ENV APP_HOME /app
 
-# Set the working directory in the Docker container
-WORKDIR /app
+WORKDIR $APP_HOME
 
-# Install the dependencies
-COPY requirements.txt /code/
+COPY ./requirements.txt .
 RUN pip install -r requirements.txt
 
-# Copy the project files to the working directory in the Docker container
 COPY . .

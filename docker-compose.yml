@@ -5,7 +5,7 @@ services:
     build: .
     command: python3 manage.py collectstatic --no-input && python3 manage.py migrate && python3 manage.py runserver 0.0.0.0:8000
     volumes:
-      - .:/code
+      - .:/config
       - ./static:/web/static
     ports:
       - "8000:8000"
